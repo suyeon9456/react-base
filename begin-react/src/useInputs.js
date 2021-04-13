@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback } from 'react'
+import { useReducer, useCallback } from 'react'
 
 function reducer (state, action) {
   switch (action.type) {
@@ -8,9 +8,7 @@ function reducer (state, action) {
         [action.name]: action.value
       }
     case 'RESET':
-      return {
-        [action.name]: action.value
-      }
+      return action.initialForm
     default:
       return new Error()
   }
@@ -34,8 +32,7 @@ function useInputs (initialForm) {
     // setForm(initialForm)
     dispatch({
       type: 'RESET',
-      name: initialForm.name,
-      value: initialForm.value
+      initialForm
     })
   }, [initialForm])
 
