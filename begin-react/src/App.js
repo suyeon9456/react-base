@@ -1,4 +1,4 @@
-import React, { useReducer, useMemo, createContext } from 'react'
+import React, { useState, useReducer, useMemo, createContext } from 'react'
 import Hello from './Hello'
 import './App.css'
 import Warpper from './Wrapper'
@@ -10,6 +10,7 @@ import CreateUser from './CreateUser'
 import ContextSample from './ContextSample'
 import Button from './components/Button'
 import './App.scss'
+import CheckBox from './components/CheckBox'
 // import produce from 'immer'
 
 function countAtiveUsers (users) {
@@ -203,6 +204,12 @@ function App () {
 
   // const count = useMemo(() => countAtiveUsers(users), [users])
 
+  const [check, setCheck] = useState(false)
+
+  const onChange = (e) => {
+    setCheck(e.target.checked)
+  }
+
   return (
     <>
       <Warpper>
@@ -283,6 +290,10 @@ function App () {
             }}
           >Button</Button>
         </div>
+      </div>
+      <hr />
+      <div>
+        <CheckBox onChange={onChange} checked={check}>다음 약관에 모두 동의</CheckBox>
       </div>
     </>
   )
