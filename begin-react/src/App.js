@@ -8,6 +8,8 @@ import UserList from './UserList'
 import CreateUser from './CreateUser'
 // import useInputs from './useInputs'
 import ContextSample from './ContextSample'
+import Button from './components/Button'
+import './App.scss'
 // import produce from 'immer'
 
 function countAtiveUsers (users) {
@@ -240,6 +242,48 @@ function App () {
       </UserDispatch.Provider>
       <hr />
       <ContextSample />
+      <hr />
+      <div className="App">
+        <div className="buttons">
+          <Button size="large">Button</Button>
+          <Button size="medium">Button</Button>
+          <Button size="samll">Button</Button>
+        </div>
+        <div className="buttons">
+          <Button color="gray" size="large">Button</Button>
+          <Button color="gray" size="medium">Button</Button>
+          <Button color="gray" size="samll">Button</Button>
+        </div>
+        <div className="buttons">
+          <Button color="pink" size="large">Button</Button>
+          <Button color="pink" size="medium">Button</Button>
+          <Button color="pink" size="samll">Button</Button>
+        </div>
+        <div className="buttons">
+          <Button color="blue" outline size="large">Button</Button>
+          <Button color="gray" outline size="medium">Button</Button>
+          <Button color="pink" outline size="samll">Button</Button>
+        </div>
+        <div className="buttons">
+          <Button
+            className="customized-button"
+            fullWidth
+            size="large"
+          >Button</Button>
+          <Button color="gray" fullWidth size="large">Button</Button>
+          <Button 
+            color="pink"
+            fullWidth
+            size="large"
+            onClick={() => {
+              console.log('클릭!')
+            }}
+            onMouseMove={() => {
+              console.log('마우스 로그!')
+            }}
+          >Button</Button>
+        </div>
+      </div>
     </>
   )
 }
