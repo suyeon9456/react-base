@@ -12,6 +12,35 @@ import Button from './components/Button'
 import './App.scss'
 import CheckBox from './components/CheckBox'
 // import produce from 'immer'
+import styled, { css, ThemeProvider } from 'styled-components'
+import StyledButton from './components/StyledButton'
+
+const Circle = styled.div`
+  width: 5rem;
+  height: 5rem;
+  background: ${props => props.color};
+  border-radius: 50%;
+  ${props =>
+    props.huge &&
+    css`
+    width: 10rem;
+    height: 10rem;
+    `
+  }
+`
+const AppBlock = styled.div`
+  width: 512px;
+  margin: 0 auto;
+  margin-top: 4rem;
+  border: 1px solid black;
+  padding: 1rem;
+`
+
+const palette = {
+  blue: '#228be6',
+  gray: '#496057',
+  pink: '#f06595'
+}
 
 function countAtiveUsers (users) {
   console.log('활성 사용자 수를 세는 중....')
@@ -295,6 +324,16 @@ function App () {
       <div>
         <CheckBox onChange={onChange} checked={check}>다음 약관에 모두 동의</CheckBox>
       </div>
+      <Circle color="blue" huge />
+      <Circle color="blue" />
+      <hr />
+      <ThemeProvider theme={{ palette }}>
+        <AppBlock>
+          <StyledButton>BUTTON</StyledButton>
+          <StyledButton color="gray">BUTTON</StyledButton>
+          <StyledButton color="pink">BUTTON</StyledButton>
+        </AppBlock>
+      </ThemeProvider>
     </>
   )
 }
