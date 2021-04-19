@@ -14,6 +14,7 @@ import CheckBox from './components/CheckBox'
 // import produce from 'immer'
 import styled, { css, ThemeProvider } from 'styled-components'
 import StyledButton from './components/StyledButton'
+import Dialog from './components/Dialog'
 
 const Circle = styled.div`
   width: 5rem;
@@ -34,6 +35,12 @@ const AppBlock = styled.div`
   margin-top: 4rem;
   border: 1px solid black;
   padding: 1rem;
+`
+
+const ButtonGroup = styled.div`
+  & + & {
+    margin-top: 1rem;
+  }
 `
 
 const palette = {
@@ -239,6 +246,21 @@ function App () {
     setCheck(e.target.checked)
   }
 
+  const [dialog, setDaialog] = useState(false)
+  const onClick = () => {
+    setDaialog(true)
+  }
+
+  const onConfirm = () => {
+    console.log('확인')
+    setDaialog(false)
+  }
+
+  const onCancle = () => {
+    console.log('취소')
+    setDaialog(false)
+  }
+
   return (
     <>
       <Warpper>
@@ -328,11 +350,36 @@ function App () {
       <Circle color="blue" />
       <hr />
       <ThemeProvider theme={{ palette }}>
-        <AppBlock>
-          <StyledButton>BUTTON</StyledButton>
-          <StyledButton color="gray">BUTTON</StyledButton>
-          <StyledButton color="pink">BUTTON</StyledButton>
-        </AppBlock>
+        <>
+          <AppBlock>
+            <ButtonGroup>
+              <StyledButton size="large">BUTTON</StyledButton>
+              <StyledButton color="gray">BUTTON</StyledButton>
+              <StyledButton color="pink" size="small">BUTTON</StyledButton>
+            </ButtonGroup>
+            <ButtonGroup>
+              <StyledButton size="large" outline>BUTTON</StyledButton>
+              <StyledButton color="gray" outline>BUTTON</StyledButton>
+              <StyledButton color="pink" size="small" outline>BUTTON</StyledButton>
+            </ButtonGroup>
+            <ButtonGroup>
+              <StyledButton size="large" fullWidth>BUTTON</StyledButton>
+              <StyledButton size="large" color="gray" fullWidth>BUTTON</StyledButton>
+              <StyledButton color="pink" size="large" fullWidth>BUTTON</StyledButton>
+            </ButtonGroup>
+            <StyledButton color="pink" size="large" onClick={onClick}>삭제</StyledButton>
+          </AppBlock>
+          <Dialog
+            title="정말로 삭제하시겠습니까?"
+            confirmText="삭제"
+            cancelText="취소"
+            onConfirm={onConfirm}
+            onCancle={onCancle}
+            visible={dialog}
+          >
+            데이터를 정말로 삭제하시겠습니까
+          </Dialog>
+        </>
       </ThemeProvider>
     </>
   )
